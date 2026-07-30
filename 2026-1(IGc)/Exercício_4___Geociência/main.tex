@@ -1,0 +1,68 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{physics}
+
+\title{Exercício 4  -  Cálculo Numérico para Geociência}
+
+
+\begin{document}
+\maketitle
+
+Nesta atividade buscaremos retornar aos conceitos apresentados durante o curso, para que possamos revisar os conceitos de mínimos quadrados.
+
+A temperatura da crosta terrestre é dada pela seguinte expressão
+\begin{align}
+    \label{eq: EDO_crosta}
+    \frac{d^2T(z)}{d^2z} = -\frac{H}{k},
+\end{align}
+sendo $T$ a temperatura medida em uma profundidade $z$, $H$ é a geração de calor radiogênico e $k$ é a condutividade da rocha. Para esse problema, assumiremos $H$ e $k$ como constantes em função da profundidade para  deixar o problema mais simples.
+
+Podemos resolver de forma que obtemos a seguinte expressão para a temperatura em função da profundidade
+\begin{align}
+    T(z) = T_0 + \qty(\frac{q_0}{k})z + \qty(\frac{-H}{2k})z^2,
+\end{align}
+sendo $q_0$ o fluxo de calor com a superfície e $T_0$ a temperatura da superfície.
+
+
+Com a intenção de verificar esse modelo, cientistas tomaram o seguinte conjunto de dados
+\begin{table}[h!]
+    \centering
+    \begin{tabular}{|c|c|c|}
+       \hline
+       z(km)& T(z)(°C) & $\sigma_T$\\
+       \hline
+       -1 & 35 & 2\\
+       -2 & 56 & 1\\
+       -5 & 95 & 4\\
+       -8 & 180& 2\\
+       -10& 210& 3\\
+       -12& 248& 2\\
+       \hline
+    \end{tabular}
+    \label{tab:placeholder}
+\end{table}
+
+E com esses dados precisamos agora determinar quais os valores dos coeficientes de nosso modelo.
+
+
+1) Use MMQ para encontrar $T_0 $,$ \qty(\frac{q_0}{k}) $ e $\qty(\frac{H}{2k})$. Considere a incerteza para definir os pesos dos dados, de acordo com o que foi ensinado na aula de 11.06. Use 3 algarismos significativos sempre que anotar os dados. Note: a coordenada z está orientada de baixo para cima, e estamos descendo em z. Então TOME CUIDADO COM SINAIS!!!
+
+2) O resultado $T_0$ faz sentido físico?
+
+3) Feito o ajuste da curva, determine o valor do coeficiente de determinação, $R^2$, desse ajuste e justifique sua qualidade.
+
+\end{document}

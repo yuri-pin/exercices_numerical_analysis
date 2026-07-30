@@ -1,0 +1,63 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{physics}
+\usepackage{gensymb}
+\usepackage{accsupp}
+
+\title{Exercício 5  -  Cálculo Numérico para Geociência}
+
+
+\begin{document}
+\maketitle
+
+
+
+
+Nesta atividade buscaremos retornar aos conceitos apresentados durante o curso, para que possamos revisar os conceitos vistos de zero de função.
+
+Para isso, traremos o mesmo problema, de perfil térmico da crosta terrestre, que pode ser dado pela seguinte expressão:
+\begin{align}
+    \label{eq: EDO_crosta}
+    \frac{d^2T(z)}{d^2z} = -\frac{H(z)}{k}.
+\end{align}
+Sendo $T$ a temperatura medida em uma profundidade $z$, $H$ é a geração de calor radiogênico e $k$ é a condutividade da rocha. Para esse problema, assumiremos que $k$ é uma constante e que o $H$ tem uma dependência da profundidade em que estamos, podendo ser escrito da seguinte forma: $H(z) = H_0e^{-z/h_r}$, sendo $h_r$ um parâmetro de escala e $H_0$ a produção de calor radiogênico.
+
+Podemos resolver de forma que obtemos a seguinte expressão para a temperatura em função da profundidade
+\begin{align}
+    T(z) = T_0 + \qty(\frac{q_0}{k})z + \frac{H_0h_r^2}{k}(1-e^{-z/h_r}),
+\end{align}
+sendo $q_0$ o fluxo de calor com a superfície e $T_0$ a temperatura da superfície. Substituindo, com valores mais próximos dos reais obtidos na literatura, temos a seguinte representação.
+\begin{align}
+    T(z) = 10 + 16,8z + 79,10(1-e^{-0.1z}),
+\end{align}
+
+
+Com esse perfil de temperatura, temos agora como descobrir a partir de qual profundidade a alta temperatura começa a alterar de forma significativa a dureza das rochas, tornando-as mais dúcteis, interferindo diretamente nos nossos modelos sísmicos. Uma temperatura em que começa a deformação estrutural das rochas é de $500 \degree C$. Definido nosso problema, execute as seguintes tarefas:
+\vspace{0.2 cm}
+\hline 
+\vspace{0.2 cm}
+1) Implemente o método da bisseção (ou método da dicotomia) até a quarta iteração. Tome o intervalo inicial entre $[20,30]$. Escreva os resultados das iterações com $4$ algarismos significativos.
+
+2) Dado o intervalo do item anterior, quantas iterações seriam necessárias para alcançarmos uma precisão menor que $0.1 \degree C$?
+
+3) Implemente o método de Newton até a quarta iteração. Tome o intervalo inicial $[20,30]$. Escreva os resultados das iterações com $4$ algarismos significativos.
+
+\vspace{2cm}
+\noindent\centering\large{ESCREVA TODOS OS PASSOS COMO APRESENTADO DURANTE O CURSO}
+
+
+\end{document}

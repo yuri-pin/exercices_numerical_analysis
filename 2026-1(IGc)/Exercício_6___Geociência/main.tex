@@ -1,0 +1,84 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with`a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage{indentfirst}
+\usepackage{enumitem}
+\usepackage{physics}
+\usepackage{gensymb}
+\usepackage{accsupp}
+
+\title{Exercício 6  -  Cálculo Numérico para Geociência}
+
+
+\begin{document}
+\maketitle
+
+
+
+
+Nesta atividade buscaremos retornar aos conceitos apresentados durante o curso, para que possamos revisar os conceitos vistos de interpolação.
+
+Para a determinação de como era o clima há milhares de anos, possuímos a técnica de medir a quantidade de carbono em testemunhos de gelo nas regiões com camadas de gelo que possuem milhares de anos. 
+
+Assim, uma equipe de paleoclimatologistas está estudando a transição da última Era do Gelo para o período interglacial atual através de um testemunho de gelo da Antártica. Eles possuem 4 pontos de controle de concentração de $CO_2$ na atmosfera:
+
+\begin{align*}
+\begin{tabular}{|c|c|}
+    \hline
+    Idade (milhar de anos) & quantidade de $CO_2$ (ppm) \\
+    \hline
+     22 & 180\\
+     18 & 190\\
+     14 & 230\\
+     12 & 260\\
+     \hline
+\end{tabular}
+\end{align*}
+
+Para estimar a quantidade de carbono em 15 mil anos, dado que não conseguimos tomar, vamos ter que construir um interpolador.
+
+\vspace{0.2 cm}
+\hline 
+\vspace{0.2 cm}
+
+1) Monte o sistema linear (apenas monte, mas sem resolver) que permite achar os coeficientes na base canônica do polinômio cúbico que interpola os dados acima; 
+
+2) Construa o polinômio cúbico seguindo a forma de Lagrange dada em aula (só explicite os polinômios $L_i$, não precisa simplificar);
+
+3) Construa o polinômio cúbico seguindo a forma de Newton, vista em aula. Depois, simplifique-o para a forma canônica;
+
+4) Substitua os índices encontrados em 3) nos coeficientes a serem determinados em 1). E verifique que é realmente uma solução para nosso problema;
+
+5) Com o polinômio encontrado em 3), determine qual a estimativa de gás carbônico há 15 mil anos.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\vspace{2cm}
+\noindent\centering\large{ESCREVA TODOS OS PASSOS COMO APRESENTADO DURANTE O CURSO}
+
+
+\end{document}
