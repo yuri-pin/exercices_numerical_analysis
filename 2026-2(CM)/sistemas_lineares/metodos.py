@@ -1,4 +1,5 @@
 import numpy as np
+import gerador as ger
 
 ## Aqui faremos alguns códigos de resolução de sistemas lineares na seguinte ordem:
 # 1) Resolução triangular superior
@@ -32,8 +33,9 @@ def Solv_U(A, b):
 
     #agora podemos resolver o restante
     for i in range(n-2,-1,-1):
+        soma = 0
         for j in range(i+1,n):
-            soma = A[i,j]*x[j]
+            soma += A[i,j]*x[j]
         x[i] = (b[i]-soma)/A[i,i]
 
     return x
@@ -84,6 +86,7 @@ def gauss(A,b):
     """
     n = len(b)
     A_memory = np.copy(A)
+    b_memory = np.copy(b)
     for i in range(n-1):
         if A_memory[i,i] ==0:
             print("pivo nulo") #  erifica se o pivô é nulo
@@ -93,11 +96,11 @@ def gauss(A,b):
             fator = A_memory[j, i] / A_memory[i, i] # ele não sendo nulo, calculamos o fator entre o pivô e o próximo indice a ser anulado
 
             A_memory[j] = A_memory[j] - fator*A_memory[i] # operação entre as linhas da matriz
-            b[j] = b[j] - fator*b[i]
+            b_memory[j] = b_memory[j] - fator*b_memory[i]
 
     # no final dessa operação essa matriz é triangular inferior
     # Assim, podemos chamar a função 
-    x = Solv_U(A_memory,b)
+    x = Solv_U(A_memory,b_memory)
     return x
 
 #------------------------------------------------------------------------------------------------------
@@ -166,17 +169,10 @@ def inversa_LU(M):
 #------------------------------------------------------------------------------------
 #6) Resolução de um problema mal condiacionado 
 
+M = ger.hilbert_M(10)
+c = np.ones(10) 
+N = ger.permuta_linha(M,0,1)
 
-#------------------------------------------------------------------------------------
-#------------------------------------------------------------------------------------
-#7) testes
 
-#M = np.array([[1,0,4],[2,1,5],[3,6,1]])
-#c = np.array([1,1,1])
+print(gauss(N,c) - Solver_LU(M,c))
 
-M = np.load("random_M.npy")
-c = np.load("random_v.npy")
-
-#print(Solv_L_uni(M,c))
-#print(inversa_gauss(M))
-print(inversa_LU(M))

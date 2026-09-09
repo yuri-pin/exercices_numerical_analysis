@@ -6,17 +6,17 @@
 
 import numpy as np
 
-def random_M():
-    A = np.random.randint(0,100,size = (1000,1000))
+def random_M(n):
+    A = np.random.randint(1,10*n,size = (n,n))
 
     np.save("random_M.npy", A)
-    return
+    return A
 
-def random_v():
-    b = np.random.randint(0,100, size = (1000))
+def random_v(n):
+    b = np.random.randint(1,10*n, size = (n))
 
     np.save("random_v.npy", b)
-    return
+    return b
 
 
 ## Segunda matriz será uma matriz mal condicionada (seja lá o que for isso), para vermos como os resultados 
@@ -29,7 +29,7 @@ def hilbert_M(n):
             H[i,j] = 1/(i+j+1)
 
     np.save("Hilbert.npy", H)
-    return
+    return H
 
 
 
@@ -46,7 +46,7 @@ def tridiagonal(n):
                 T[i,j] = -1
 
     np.save("trigiagonal.npy", T)
-    return
+    return T
 
 ## Comentário: para resolver esse tipo de problema específico, podemos usar o algoritmo de thomas, como 
 ## descrito no link: 
@@ -55,7 +55,8 @@ def tridiagonal(n):
 #---------------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------------
 
-random_M()
-random_v()
-hilbert_M(10)
-tridiagonal(10)
+def permuta_linha(M,i, j):
+    N =np.copy(M) 
+    N[[i,j]] = N[[j,i]]
+    return N
+    
