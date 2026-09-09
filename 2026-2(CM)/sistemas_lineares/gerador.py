@@ -7,13 +7,13 @@
 import numpy as np
 
 def random_M():
-    A = np.random.randint(0,100,size = (100,100))
+    A = np.random.randint(0,100,size = (1000,1000))
 
     np.save("random_M.npy", A)
     return
 
 def random_v():
-    b = np.random.randint(0,100, size = (100))
+    b = np.random.randint(0,100, size = (1000))
 
     np.save("random_v.npy", b)
     return
