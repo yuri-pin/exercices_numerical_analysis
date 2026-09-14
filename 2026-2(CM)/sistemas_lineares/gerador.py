@@ -31,7 +31,14 @@ def hilbert_M(n):
     np.save("Hilbert.npy", H)
     return H
 
-
+def hilbert_v(n):
+    h = np.zeros(n)
+    for i in range(0,n):
+        soma = 0
+        for j in range(0,n):
+            soma += 1/(i+j+1)
+        h[i] = soma
+    return h
 
 ## Por fim, para o último exemplo teremos a construção de uma matriz tridiagonal, que é definida positiva,
 ## onde poderemos usar a decomposição de cholesky
@@ -51,6 +58,65 @@ def tridiagonal(n):
 ## Comentário: para resolver esse tipo de problema específico, podemos usar o algoritmo de thomas, como 
 ## descrito no link: 
 ## https://pt.wikipedia.org/wiki/Algoritmo_de_Thomas
+
+
+
+## construiremos uma matriz definida positiva que não esparça
+
+def gram_schmidt(A):
+  # A é uma matriz onde cada coluna é um vetor
+  Q = np.zeros_like(A, dtype=float)
+  for j in range(A.shape[1]):
+    v = A[:, j]
+    for i in range(j):
+      # Subtrai a projeção nos vetores anteriores já ortonormalizados
+      v = v - np.dot(Q[:, i], A[:, j]) * Q[:, i]
+    # Normalização
+    norm = np.linalg.norm(v)
+    if norm > 1e-10:
+      Q[:, j] = v / norm
+    else:
+      Q[:, j] = np.zeros_like(v)
+  return Q
+
+def diag_positiva(n):
+    D = np.zeros([n,n])
+    b = np.random.randint(1,10*n, size = (n))
+    for i in range(0,n):
+        D[i,i] = b[i]
+
+    return D 
+
+def diag_geral(n):
+    D = np.zeros([n,n])
+    b = np.random.randint(-10*n,10*n, size = (n))
+    for i in range(0,n):
+        D[i,i] = b[i]    
+    return D
+
+
+def SDP(n):
+    A = random_M(n)
+    P = gram_schmidt(A)
+    Pt = np.transpose(P)
+    D = diag_positiva(n)
+
+    SPD = P@D@Pt
+
+    return SPD
+
+
+def nSDP(n):
+    A = random_M(n)
+    P = gram_schmidt(A)
+    Pt = np.transpose(P)
+    D = diag_geral(n)
+
+    nSPD = P@D@Pt
+    return nSPD    
+
+
+
 
 #---------------------------------------------------------------------------------------------
 #---------------------------------------------------------------------------------------------

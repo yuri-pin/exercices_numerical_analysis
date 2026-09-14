@@ -1,4 +1,5 @@
 import numpy as np
+import time
 import gerador as ger
 
 ## Aqui faremos alguns códigos de resolução de sistemas lineares na seguinte ordem:
@@ -169,10 +170,51 @@ def inversa_LU(M):
 #------------------------------------------------------------------------------------
 #6) Resolução de um problema mal condiacionado 
 
-M = ger.hilbert_M(10)
-c = np.ones(10) 
+"""M = ger.hilbert_M(13)
+c = ger.hilbert_v(13)
+
 N = ger.permuta_linha(M,0,1)
+d = ger.permuta_linha(c,0,1)
+
+print(gauss(N,d))
+
+print(Solver_LU(M,c))
+"""
+
+#------------------------------------------------------------------------------------
+#------------------------------------------------------------------------------------
+#6) Decomposição de Cholesky 
+
+def cholesky(A):
+
+    inicio = time.perf_counter()
+    B = np.copy(A)
+    n = A.shape[0]
+    L = np.zeros((n, n), dtype=float)
+
+    for i in range(n):
+        for j in range(i + 1):
+            # Produto escalar das linhas i e j até a coluna j-1
+            soma = np.dot(L[i, :j], L[j, :j])
+            
+            if i == j:
+                val = B[i, i] - soma
+                if val <= 0:
+                    raise ValueError("A matriz não é definida positiva.")
+                L[i, j] = np.sqrt(val)
+            else:
+                L[i, j] = (B[i, j] - soma) / L[j, j]
+
+    fim = time.perf_counter()
+    tempo = fim-inicio
+    return L,tempo
 
 
-print(gauss(N,c) - Solver_LU(M,c))
+A_original = ger.SDP(2000)
+L,tempo1 = cholesky(A_original)
+print(tempo1)
 
+inicio2 = time.perf_counter()
+D,_ = np.linalg.eig(A_original)
+fim2 = time.perf_counter()
+print(fim2 - inicio2)
