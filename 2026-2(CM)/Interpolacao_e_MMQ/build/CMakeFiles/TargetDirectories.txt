@@ -1,0 +1,3 @@
+/home/yuri/Área de trabalho/monitorias/2026-2(CM)/Interpolacao_e_MMQ/build/CMakeFiles/parte3.dir
+/home/yuri/Área de trabalho/monitorias/2026-2(CM)/Interpolacao_e_MMQ/build/CMakeFiles/edit_cache.dir
+/home/yuri/Área de trabalho/monitorias/2026-2(CM)/Interpolacao_e_MMQ/build/CMakeFiles/rebuild_cache.dir
